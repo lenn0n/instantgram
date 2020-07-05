@@ -10,6 +10,7 @@ import {
   UNLOADING_UI,
   USER_TOKEN,
   SET_UNAUTHENTICATED,
+  API_ENDPOINT,
 } from "../types";
 //To get the data from our API ENDPOINTS, we will use AXIOS.
 //Since we are using PROXY in package.json, /screams, /users will work
@@ -23,7 +24,7 @@ export const loginUser = (userInput, history) => (dispatch) => {
   //Set authorization token to have access in our HEADERS.
   //Set also in local storage. If success, push HISTORY.
   axios
-    .post("/login", userInput)
+    .post(`${API_ENDPOINT}/login`, userInput)
     .then((res) => {
       dispatch({ type: UNLOADING_UI });
       dispatch({ type: CLEAR_ERRORS });
@@ -40,7 +41,7 @@ export const loginUser = (userInput, history) => (dispatch) => {
 export const signupUser = (newUser, history) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("/signup", newUser)
+    .post(`${API_ENDPOINT}/signup`, newUser)
     .then((res) => {
       dispatch({ type: UNLOADING_UI });
       dispatch({ type: CLEAR_ERRORS });
@@ -68,7 +69,7 @@ export const getUserData = () => (dispatch) => {
   //This endpoint will get the HEADER value, Authorization: Bearer: %%%
   //The user must be logged in.
   axios
-    .get("/users/view")
+    .get(`${API_ENDPOINT}/users/view`)
     .then((res) => {
       dispatch({ type: SET_USER, payload: res.data });
     })

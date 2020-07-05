@@ -10,3 +10,6 @@ export const LOADING_UI = "LOADING_UI";
 export const UNLOADING_UI = "UNLOADING_UI";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_SCREAMS = "SET_SCREAMS";
+//API Endpoint URL
+export const API_ENDPOINT =
+  "https://asia-east2-fir-crud-8d71b.cloudfunctions.net/api";
