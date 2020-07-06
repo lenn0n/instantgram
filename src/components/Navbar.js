@@ -23,7 +23,7 @@ class Navbar extends Component {
       <AppBar>
         <Toolbar className="toolbarcenter">
           <Button color="inherit" component={Link} to="/">
-            Sweet Home
+            Home
           </Button>
           {authenticated ? (
             <Button color="inherit" component={Link} to="/logout">

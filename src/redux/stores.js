@@ -22,7 +22,10 @@ const reducers = combineReducers({
 const store = createStore(
   reducers,
   initialState,
-  compose(applyMiddleware(...middleware))
+  compose(
+    applyMiddleware(...middleware)
+    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
-
+//To access by mobile, remove the redux dev tools
 export default store;
