@@ -25,7 +25,6 @@ class Navbar extends Component {
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>
-
           {authenticated ? (
             <Button color="inherit" component={Link} to="/logout">
               Logout
