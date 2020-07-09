@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import logoURL from "../images/logo.png";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+//For authenticating of page
+import { authModule } from "../utils/auth";
+//Redux
 import { connect } from "react-redux";
 import { signupUser } from "../redux/actions/userActions";
 //Material Custom Style
@@ -68,6 +70,7 @@ class signup extends Component {
     //disable the components when is loading is true
     return (
       <div className="container">
+        {authModule(false)}
         <Navbar />
         <Grid container className={classes.formContainer}>
           <Grid item sm />

@@ -46,7 +46,6 @@ const theme = createMuiTheme(themestyle);
 //This component contains the main routing logic of the Frontend.
 //For navigation, we use can AppBar/Navbar
 //Listener of the url <Switch>, redirect to the site
-
 function App() {
   return (
     <MuiThemeProvider theme={theme}>

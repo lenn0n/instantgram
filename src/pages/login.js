@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import logoURL from "../images/logo.png";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
 //Redux thing
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/userActions";
@@ -13,9 +12,10 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import Navbar from "../components/Navbar";
-
+//Authentication
+import { authModule } from "../utils/auth";
+//Global Style
 const style = (theme) => ({ ...theme.loginRegister });
-
 //You cannot put classes outside of the class component
 //Simply because render() holds the component itself
 //So declare classes inside render()
@@ -59,6 +59,7 @@ class login extends Component {
     //disable the components when is loading is true
     return (
       <div className="container">
+        {authModule(false)}
         <Navbar />
         <Grid container className={classes.formContainer}>
           <Grid item sm />

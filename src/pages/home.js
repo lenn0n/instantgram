@@ -3,6 +3,8 @@
 //In order to connect to our global state (store), We must use the CONNECT from REACT-REDUX.
 import React, { Component } from "react";
 import { connect } from "react-redux";
+//Authentication
+import { authModule } from "../utils/auth";
 //Material UI Grid Component lets us divide the page for better experience.
 //withStyle is for custom layout.
 import Grid from "@material-ui/core/Grid";
@@ -16,12 +18,13 @@ import Profile from "../components/Profile";
 import Placeholder from "../utils/Placeholder";
 //Actions likely to DISPATCH to STORE.
 //Some axios thing happens here, we process user requests here.
-import { getUserData } from "../redux/actions/userActions";
+import { getUserData, logoutUser } from "../redux/actions/userActions";
 import { getAllScreams } from "../redux/actions/dataActions";
 //MUI Global Theming
 //This theme tags is connected to APPSTYLES.JS via MUI Theme Provider @ App.js
 //We are now allowed to use className={classes.~~~~}
 const style = (theme) => ({ ...theme.loginRegister, ...theme.marginLeftRight });
+
 class home extends Component {
   //componentDidMount() performs right after the components are fully loaded.
   //“State” is an object that represents the parts of the app that can change.
@@ -53,7 +56,7 @@ class home extends Component {
     );
     //Same with screams, but this component calls once and re-render the data itself.
     //If loadProfileDataFromStore is NOT NULL, put PROFILE COMPONENT, else throw PLACEHOLDER.
-    let loadProfileDataFromStore = this.props.user.credentials ? (
+    let loadProfileDataFromStore = this.props.user.authenticated ? (
       <Profile />
     ) : (
       <div className={classes.placeHolder}>
@@ -63,6 +66,7 @@ class home extends Component {
 
     return (
       <div>
+        {authModule(true)}
         <Navbar />
         <div className="container">
           <Grid container>
@@ -91,6 +95,7 @@ const mapStateToProps = (state) => ({
 const mapActionToProps = {
   getUserData,
   getAllScreams,
+  logoutUser,
 };
 export default connect(
   mapStateToProps,

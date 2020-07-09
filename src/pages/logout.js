@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { logoutUser } from "../redux/actions/userActions";
-
+import store from "../redux/stores";
 class logout extends Component {
   render() {
-    this.props.logoutUser();
+    store.dispatch(logoutUser());
     //TODO: redirect to logout page
     this.props.history.push("/login");
     return <div></div>;
   }
 }
 
-const mapActionToProps = {
-  logoutUser,
-};
-export default connect(null, mapActionToProps)(logout);
+export default logout;
