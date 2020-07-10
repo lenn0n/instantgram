@@ -5,6 +5,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 //In order to connect to our global state (store), We must use the CONNECT from REACT-REDUX.
 import { connect } from "react-redux";
+//Decoding of token
+import jwtDecode from "jwt-decode";
 //Material-UI Components
 //MUI is a front-end solution.
 import AppBar from "@material-ui/core/AppBar";
@@ -17,15 +19,29 @@ class Navbar extends Component {
     //extract the loading state from UI Props from Redux Store.
     const {
       ui: { loading },
-      authenticated,
     } = this.props;
+    //Simple auth for changing links
+    //It is not really secure but for just showing the links only
+    //Auth.js is pretty secure though, it will redirect to the link (mandatory)
+    let navAuth = false;
+    const token = localStorage.FBIdToken;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        navAuth = false;
+      } else {
+        navAuth = true;
+      }
+    } else {
+      navAuth = false;
+    }
     return (
       <AppBar>
         <Toolbar className="toolbarcenter">
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>
-          {authenticated ? (
+          {navAuth ? (
             <Button color="inherit" component={Link} to="/logout">
               Logout
             </Button>
@@ -52,7 +68,6 @@ class Navbar extends Component {
 //Map the state from REDUX STORE to Navbar Props.
 const mapStateToProps = (state) => ({
   ui: state.ui,
-  authenticated: state.user.authenticated,
 });
 //Finally connect the app with state mapped to Props.
 export default connect(mapStateToProps)(Navbar);

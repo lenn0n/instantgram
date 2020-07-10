@@ -36,12 +36,10 @@ class login extends Component {
     //userActions.js
     this.props.loginUser(userInput, this.props.history);
   };
-
   //setting the new state onHandleChange
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
   //the main hierarchy tips is
   //class == initiatiation and functions creations (didMount)
   //render == coding zone, logic usually happens here
@@ -53,10 +51,6 @@ class login extends Component {
     } = this.props;
     //get the errors array in this.state
     //errors holds an object {} from axios state
-
-    //linear progress is quite fun, try modifying it! :)
-    //if loading? show that element
-    //disable the components when is loading is true
     return (
       <div className="container">
         {authModule(false)}
