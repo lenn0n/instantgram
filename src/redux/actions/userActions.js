@@ -88,3 +88,21 @@ const setAuthorizationStorage = (token) => {
   //set item to the storage
   localStorage.setItem(USER_TOKEN, FBIdToken);
 };
+export const userImageUpload = (formData) => (dispatch) => {
+  //this section is FBAuth protected
+  //you cannot enter here if invalid header token
+  //if success, update the view of user-details
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${API_ENDPOINT}/users/upload`, formData)
+    .then(() => {
+      dispatch({ type: UNLOADING_UI });
+      dispatch({ type: CLEAR_ERRORS });
+      dispatch(getUserData());
+    })
+    .catch((err) => {
+      dispatch({ type: UNLOADING_UI });
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+      console.log(err);
+    });
+};
