@@ -44,5 +44,6 @@ export default {
     uploadSuccess: { color: "lightgreen" },
     editIconButton: { float: "right", marginTop: -40 },
     editPictureBody: { width: "80%" },
+    minusBottom: { marginBottom: -4 },
   },
 };
