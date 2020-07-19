@@ -106,3 +106,15 @@ export const userImageUpload = (formData) => (dispatch) => {
       console.log(err);
     });
 };
+
+export const updateUserProfile = (userData) => (dispatch) => {
+  //::::::::::::::::TODO: Check if the TOKEN is EXPIRE:::::::::::::::::::::::
+  //This endpoint will get the HEADER value, Authorization: Bearer: %%%
+  //The user must be logged in.
+  axios
+    .get(`${API_ENDPOINT}/users/view`)
+    .then((res) => {
+      dispatch({ type: SET_USER, payload: res.data });
+    })
+    .catch((err) => console.log(err));
+};

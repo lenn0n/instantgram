@@ -14,8 +14,16 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
 import Tooltip from "@material-ui/core/Tooltip";
+import Link2 from "@material-ui/core/Link";
+//MUI Icons
+import EditIcon from "@material-ui/icons/Edit";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import SpeakerNotesIcon from "@material-ui/icons/SpeakerNotes";
+import LocationCityIcon from "@material-ui/icons/LocationCity";
+import LinkIcon from "@material-ui/icons/Language";
+//Components
+import EditProfile from "./EditProfile";
 //Using withstyles, we can add some styles for the page.
 //this theme is connected to appstyles.js via MUI theme @ App.js
 //we are now allowed to use className={classes.~~~~}
@@ -39,13 +47,17 @@ class Profile extends Component {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
   };
+  //for dialog box
+  //dialog box is based on define state if TRUE or FALSE
+  //once the state became TRUE, it will trigger open={} props.
+
   render() {
     //classes can access theme class.
     //extract the user state from REDUX STORE to this props.
     const {
       classes,
       user: {
-        credentials: { userHandle, imageURL, bio, location },
+        credentials: { userHandle, imageURL, bio, location, website },
       },
       ui: { errors },
     } = this.props;
@@ -79,14 +91,24 @@ class Profile extends Component {
             component={Link}
             to={`/users/${userHandle}`}
           >
-            @{userHandle}
+            <AccountCircleIcon className={classes.minusBottom} /> {userHandle}
           </Typography>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant="body1" color="textSecondary">
+            <SpeakerNotesIcon className={classes.minusBottom} />
             {bio}
           </Typography>
-          <Typography variant="body1" color="textPrimary">
+          <Typography variant="body2" color="Link">
+            <Link2 href={website}>
+              <LinkIcon className={classes.minusBottom} />
+              {website}
+            </Link2>
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            <LocationCityIcon className={classes.minusBottom} />
             {location}
           </Typography>
+          <br />
+          <EditProfile />
           <input
             type="file"
             onChange={this.onImageSubmit}

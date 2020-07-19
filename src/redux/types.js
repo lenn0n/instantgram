@@ -3,7 +3,7 @@ export const SET_AUTHENTICATED = "SET_AUTHENTICATED";
 export const SET_UNAUTHENTICATED = "SET_UNAUTHENTICATED";
 export const SET_USER = "SET_USER";
 export const LOADING_USER = "LOADING_USER";
-export const USER_TOKEN = "FBIdToken";
+export const UPDATE_USER = "UPDATE_USER";
 //UI reducer types
 export const SET_ERRORS = "SET_ERRORS";
 export const LOADING_UI = "LOADING_UI";
@@ -13,3 +13,5 @@ export const SET_SCREAMS = "SET_SCREAMS";
 //API Endpoint URL
 export const API_ENDPOINT =
   "https://asia-east2-fir-crud-8d71b.cloudfunctions.net/api";
+//Token
+export const USER_TOKEN = "FBIdToken";
