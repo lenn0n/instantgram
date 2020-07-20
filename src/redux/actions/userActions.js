@@ -11,6 +11,7 @@ import {
   USER_TOKEN,
   SET_UNAUTHENTICATED,
   API_ENDPOINT,
+  SET_SUCCESS,
 } from "../types";
 //To get the data from our API ENDPOINTS, we will use AXIOS.
 //Since we are using PROXY in package.json, /screams, /users will work
@@ -33,6 +34,7 @@ export const loginUser = (userInput, history) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
+      dispatch({ type: UNLOADING_UI });
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
   //Else, dispatch an ERROR type with PAYLOAD data response.
@@ -50,6 +52,7 @@ export const signupUser = (newUser, history) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
+      dispatch({ type: UNLOADING_UI });
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
 };
@@ -95,26 +98,26 @@ export const userImageUpload = (formData) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
     .post(`${API_ENDPOINT}/users/upload`, formData)
-    .then(() => {
+    .then((res) => {
       dispatch({ type: UNLOADING_UI });
+      dispatch({ type: SET_SUCCESS, payload: res.data });
       dispatch({ type: CLEAR_ERRORS });
       dispatch(getUserData());
     })
     .catch((err) => {
       dispatch({ type: UNLOADING_UI });
       dispatch({ type: SET_ERRORS, payload: err.response.data });
-      console.log(err);
     });
 };
 
 export const updateUserProfile = (userData) => (dispatch) => {
-  //::::::::::::::::TODO: Check if the TOKEN is EXPIRE:::::::::::::::::::::::
-  //This endpoint will get the HEADER value, Authorization: Bearer: %%%
-  //The user must be logged in.
+  dispatch({ type: LOADING_UI });
   axios
-    .get(`${API_ENDPOINT}/users/view`)
+    .post(`${API_ENDPOINT}/users/update`, userData)
     .then((res) => {
-      dispatch({ type: SET_USER, payload: res.data });
+      dispatch(getUserData());
+      dispatch({ type: UNLOADING_UI });
+      dispatch({ type: SET_SUCCESS, payload: res.data });
     })
     .catch((err) => console.log(err));
 };

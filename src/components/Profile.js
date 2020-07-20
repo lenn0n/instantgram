@@ -24,6 +24,8 @@ import LocationCityIcon from "@material-ui/icons/LocationCity";
 import LinkIcon from "@material-ui/icons/Language";
 //Components
 import EditProfile from "./EditProfile";
+import ErrorDialog from "../dialogs/ErrorDialog";
+import SuccessDialog from "../dialogs/SuccessDialog";
 //Using withstyles, we can add some styles for the page.
 //this theme is connected to appstyles.js via MUI theme @ App.js
 //we are now allowed to use className={classes.~~~~}
@@ -39,7 +41,7 @@ class Profile extends Component {
       //for uploading of picture, we will use form data. See RESTFUL API
       this.props.userImageUpload(formData);
     } catch (error) {
-      console.log("s");
+      console.log("User cancelled selecting of photo.");
     }
   };
   //The uploader is hidden, once this icon clicked, execute this
@@ -47,9 +49,6 @@ class Profile extends Component {
     const fileInput = document.getElementById("imageInput");
     fileInput.click();
   };
-  //for dialog box
-  //dialog box is based on define state if TRUE or FALSE
-  //once the state became TRUE, it will trigger open={} props.
 
   render() {
     //classes can access theme class.
@@ -59,11 +58,12 @@ class Profile extends Component {
       user: {
         credentials: { userHandle, imageURL, bio, location, website },
       },
-      ui: { errors },
     } = this.props;
 
     return (
       <Card className={classes.card}>
+        <ErrorDialog vertical="top" horizontal="right" />
+        <SuccessDialog vertical="bottom" horizontal="center" />
         <CardMedia
           image={imageURL}
           title="Profile Picture"
@@ -79,11 +79,6 @@ class Profile extends Component {
             </IconButton>
           </Tooltip>
         </div>
-        {errors ? (
-          <div className={classes.uploadFailed}>{errors.FileFormat}</div>
-        ) : (
-          <div></div>
-        )}
         <CardContent>
           <Typography
             variant="h5"

@@ -1,9 +1,17 @@
 //Reducer connected to UI store state.
-import { LOADING_UI, CLEAR_ERRORS, SET_ERRORS, UNLOADING_UI } from "../types";
+import {
+  LOADING_UI,
+  CLEAR_ERRORS,
+  SET_ERRORS,
+  UNLOADING_UI,
+  CLEAR_SUCCESS,
+  SET_SUCCESS,
+} from "../types";
 //It is recommended to set initial state in every reducer.
 const initialState = {
   loading: false,
-  errors: {},
+  errors: "",
+  success: "",
 };
 
 export default function (state = initialState, action) {
@@ -16,10 +24,14 @@ export default function (state = initialState, action) {
       return { ...state, loading: false };
     //set the errors as new and stop the loadingbar.
     case SET_ERRORS:
-      return { loading: false, errors: action.payload };
+      return { ...state, errors: action.payload };
+    case SET_SUCCESS:
+      return { ...state, success: action.payload };
     //return the current state and clear only the errors.
     case CLEAR_ERRORS:
-      return { ...state, errors: {} };
+      return { ...state, errors: "" };
+    case CLEAR_SUCCESS:
+      return { ...state, success: "" };
 
     default:
       return state;

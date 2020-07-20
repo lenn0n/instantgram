@@ -43,6 +43,7 @@ class home extends Component {
     //Every changes happening in THIS.PROPS.DATA.SCREAMS
     //..it reflects the declared variable to the returned varibles {loadScreamF...}
     //if this.props.data.screams is TRUE, then ... ELSE throw a PLACEHOLDER.
+    //load only the scream if authenticated
     let loadScreamFromProps = this.props.data.screams ? (
       //React needs unique key in every iteration, EG.: key={scream.ID}
       //Note: When you have an array of data [] from store, you need to map it.

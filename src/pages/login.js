@@ -65,7 +65,9 @@ class login extends Component {
             <br />
             {loading ? <h3>Logging in...</h3> : <h3>Login Account</h3>}
             <form noValidate onSubmit={this.handleSubmit}>
-              {errors.Login && <div className="error">{errors.Login}</div>}
+              {errors.loginFailed && (
+                <div className="error">{errors.loginFailed}</div>
+              )}
               <h4>Email Address</h4>
               <TextField
                 className={classes.textField}
@@ -74,8 +76,8 @@ class login extends Component {
                 name="email"
                 type="email"
                 onChange={this.handleChange}
-                error={errors.email ? true : false}
-                helperText={errors.email}
+                error={errors.emptyEmail ? true : false}
+                helperText={errors.emptyEmail}
                 disabled={loading ? true : false}
                 value={this.state.email}
                 fullWidth
@@ -88,8 +90,8 @@ class login extends Component {
                 name="password"
                 type="password"
                 onChange={this.handleChange}
-                helperText={errors.password}
-                error={errors.password ? true : false}
+                helperText={errors.emptyPassword}
+                error={errors.emptyPassword ? true : false}
                 disabled={loading ? true : false}
                 value={this.state.password}
                 fullWidth

@@ -82,9 +82,7 @@ class signup extends Component {
             <br />
             {loading ? <h3>Signing up...</h3> : <h3>Account Registration</h3>}
             <form noValidate onSubmit={this.handleSubmit}>
-              {errors.Registration && (
-                <div className="error">{errors.Registration}</div>
-              )}
+              {errors.error && <div className="error">{errors.error}</div>}
               <h4>Email Address</h4>
               <TextField
                 className={classes.textField}
@@ -93,8 +91,8 @@ class signup extends Component {
                 name="email"
                 type="email"
                 onChange={this.handleChange}
-                error={errors.email ? true : false}
-                helperText={errors.email}
+                error={errors.emailEmpty ? true : false}
+                helperText={errors.emailEmpty}
                 disabled={loading ? true : false}
                 value={this.state.email}
                 fullWidth
@@ -107,12 +105,15 @@ class signup extends Component {
                 name="password"
                 type="password"
                 onChange={this.handleChange}
-                helperText={errors.password}
-                error={errors.password ? true : false}
+                helperText={errors.passwordEmpty}
+                error={errors.passwordEmpty ? true : false}
                 disabled={loading ? true : false}
                 value={this.state.password}
                 fullWidth
               ></TextField>
+              {errors.passwordLength && (
+                <div className="error">{errors.passwordLength}</div>
+              )}
               <h4>Confirm Password</h4>
               <TextField
                 className={classes.textField}
@@ -121,8 +122,8 @@ class signup extends Component {
                 name="cpassword"
                 type="password"
                 onChange={this.handleChange}
-                helperText={errors.cpassword}
-                error={errors.cpassword ? true : false}
+                helperText={errors.passwordNotMatch}
+                error={errors.passwordNotMatch ? true : false}
                 disabled={loading ? true : false}
                 value={this.state.cpassword}
                 fullWidth
@@ -134,12 +135,15 @@ class signup extends Component {
                 id="userhandle"
                 name="userhandle"
                 onChange={this.handleChange}
-                helperText={errors.userhandle}
-                error={errors.userhandle ? true : false}
+                helperText={errors.usernameEmpty}
+                error={errors.usernameEmpty ? true : false}
                 disabled={loading ? true : false}
                 value={this.state.userhandle}
                 fullWidth
               ></TextField>
+              {errors.usernameTaken && (
+                <div className="error">{errors.usernameTaken}</div>
+              )}
               <Button
                 className={classes.button}
                 variant="contained"

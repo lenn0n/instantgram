@@ -6,7 +6,7 @@ import {
   UPDATE_USER,
 } from "../types";
 //It is recommended to set initial state in every reducer.
-const credentials = {};
+const credentials = "";
 
 export default function (state = credentials, action) {
   switch (action.type) {
