@@ -79,7 +79,6 @@ export const getUserData = () => (dispatch) => {
       //authenticated changes will trigger the store, which may fail
       //because of invalid credentials
       dispatch({ type: SET_USER, payload: res.data });
-      dispatch({ type: SET_AUTHENTICATED });
     })
     .catch((err) => console.log(err));
 };

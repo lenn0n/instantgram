@@ -15,7 +15,7 @@ export default function (state = credentials, action) {
     //using ... will map all the payload data to the corresponding initial state. (2 or more)
     //for single object, we user, sample_name: action.payload.
     case SET_USER:
-      return { ...action.payload };
+      return { ...action.payload, authenticated: true };
 
     default:
       return state;
