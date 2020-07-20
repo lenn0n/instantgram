@@ -1,10 +1,5 @@
 //Reducer connected to USER store state.
-import {
-  SET_USER,
-  SET_AUTHENTICATED,
-  SET_UNAUTHENTICATED,
-  UPDATE_USER,
-} from "../types";
+import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED } from "../types";
 //It is recommended to set initial state in every reducer.
 const credentials = "";
 
@@ -20,15 +15,7 @@ export default function (state = credentials, action) {
     //using ... will map all the payload data to the corresponding initial state. (2 or more)
     //for single object, we user, sample_name: action.payload.
     case SET_USER:
-      return {
-        ...action.payload,
-        authenticated: true,
-      };
-    case UPDATE_USER:
-      return {
-        ...action.payload,
-        authenticated: true,
-      };
+      return { ...action.payload };
 
     default:
       return state;

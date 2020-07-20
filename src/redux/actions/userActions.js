@@ -10,6 +10,7 @@ import {
   UNLOADING_UI,
   USER_TOKEN,
   SET_UNAUTHENTICATED,
+  SET_AUTHENTICATED,
   API_ENDPOINT,
   SET_SUCCESS,
 } from "../types";
@@ -74,7 +75,11 @@ export const getUserData = () => (dispatch) => {
   axios
     .get(`${API_ENDPOINT}/users/view`)
     .then((res) => {
+      //SET first the user data before calling SET_AUTHENTICATED
+      //authenticated changes will trigger the store, which may fail
+      //because of invalid credentials
       dispatch({ type: SET_USER, payload: res.data });
+      dispatch({ type: SET_AUTHENTICATED });
     })
     .catch((err) => console.log(err));
 };

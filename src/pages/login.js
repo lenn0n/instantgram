@@ -60,7 +60,7 @@ class login extends Component {
           <Grid item sm>
             <br />
             <center>
-              <img src={logoURL} height="100%" width="100%" alt="asdsa" />
+              <img src={logoURL} height="100%" width="100%" alt="logo" />
             </center>
             <br />
             {loading ? <h3>Logging in...</h3> : <h3>Login Account</h3>}
