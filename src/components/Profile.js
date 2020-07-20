@@ -62,7 +62,7 @@ class Profile extends Component {
 
     return (
       <Card className={classes.card}>
-        <ErrorDialog vertical="top" horizontal="right" />
+        <ErrorDialog vertical="bottom" horizontal="center" />
         <SuccessDialog vertical="bottom" horizontal="center" />
         <CardMedia
           image={imageURL}
