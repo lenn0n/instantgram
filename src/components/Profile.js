@@ -34,11 +34,15 @@ const style = (theme) => ({ ...theme.profile });
 class Profile extends Component {
   //Event trigger when the uploader was clicked.
   onImageSubmit = (event) => {
-    const image = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", image, image.name);
-    //for uploading of picture, we will use form data. See RESTFUL API
-    this.props.userImageUpload(formData);
+    try {
+      const image = event.target.files[0];
+      const formData = new FormData();
+      formData.append("image", image, image.name);
+      //for uploading of picture, we will use form data. See RESTFUL API
+      this.props.userImageUpload(formData);
+    } catch (error) {
+      console.log("User cancelled selecting of photo.");
+    }
   };
   //The uploader is hidden, once this icon clicked, execute this
   clickUploader = () => {
@@ -100,12 +104,7 @@ class Profile extends Component {
           </Typography>
           <br />
           <EditProfile />
-          <input
-            type="file"
-            onChange={this.onImageSubmit}
-            id="imageInput"
-            hidden="hidden"
-          />
+          <input type="file" onChange={this.onImageSubmit} id="imageInput" />
         </CardContent>
       </Card>
     );
