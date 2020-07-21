@@ -28,6 +28,7 @@ export const loginUser = (userInput, history) => (dispatch) => {
     .post(`${API_ENDPOINT}/login`, userInput)
     .then((res) => {
       dispatch({ type: UNLOADING_UI });
+      dispatch({ type: SET_SUCCESS, payload: res.data });
       dispatch({ type: CLEAR_ERRORS });
       setAuthorizationStorage(res.data.Token);
       setAuthorizationHeader(res.data.Token);
@@ -46,6 +47,7 @@ export const signupUser = (newUser, history) => (dispatch) => {
     .post(`${API_ENDPOINT}/signup`, newUser)
     .then((res) => {
       dispatch({ type: UNLOADING_UI });
+      dispatch({ type: SET_SUCCESS, payload: res.data });
       dispatch({ type: CLEAR_ERRORS });
       setAuthorizationStorage(res.data.Token);
       setAuthorizationHeader(res.data.Token);
@@ -62,6 +64,10 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem(USER_TOKEN);
   //clear the headers used for (getUserData)
   delete axios.defaults.headers.common["Authorization"];
+  /*  dispatch({
+    type: SET_SUCCESS,
+    payload: { S: `Logout successfully! Please come again!` },
+  }); */
   //set un-authenticated and reset back to initial state.
   dispatch({ type: SET_UNAUTHENTICATED });
   //if theres an error, clear it for next login.

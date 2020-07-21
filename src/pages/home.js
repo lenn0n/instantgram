@@ -20,6 +20,8 @@ import Placeholder from "../utils/Placeholder";
 //Some axios thing happens here, we process user requests here.
 import { getUserData, logoutUser } from "../redux/actions/userActions";
 import { getAllScreams } from "../redux/actions/dataActions";
+//Dialog
+import SuccessDialog from "../dialogs/SuccessDialog";
 //MUI Global Theming
 //This theme tags is connected to APPSTYLES.JS via MUI Theme Provider @ App.js
 //We are now allowed to use className={classes.~~~~}
@@ -68,6 +70,7 @@ class home extends Component {
     return (
       <div>
         {authModule(true)}
+        <SuccessDialog vertical="bottom" horizontal="center" />
         <Navbar />
         <div className="container">
           <Grid container>

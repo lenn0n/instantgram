@@ -19,6 +19,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 //Actions
 import { updateUserProfile } from "../redux/actions/userActions";
+//Dialog
 import SuccessDialog from "../dialogs/SuccessDialog";
 class EditProfile extends Component {
   //initialize the state to be used in our endpoint

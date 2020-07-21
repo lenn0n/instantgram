@@ -24,6 +24,7 @@ import LocationCityIcon from "@material-ui/icons/LocationCity";
 import LinkIcon from "@material-ui/icons/Language";
 //Components
 import EditProfile from "./EditProfile";
+//Dialogs
 import ErrorDialog from "../dialogs/ErrorDialog";
 import SuccessDialog from "../dialogs/SuccessDialog";
 //Using withstyles, we can add some styles for the page.
