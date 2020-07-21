@@ -104,7 +104,12 @@ class Profile extends Component {
           </Typography>
           <br />
           <EditProfile />
-          <input type="file" onChange={this.onImageSubmit} id="imageInput" />
+          <input
+            type="file"
+            onChange={this.onImageSubmit}
+            id="imageInput"
+            hidden="hidden"
+          />
         </CardContent>
       </Card>
     );
